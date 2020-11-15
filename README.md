@@ -39,8 +39,14 @@ https://www.zhihu.com/topic/21187638/hot
 
 未来可以从排队论中寻找灵感，比如增加忙时和闲时，将 ric 用起来
 
+### 优点
+
+仍旧是同步渲染，侵入性非常小
+
+有效缓解 jank，提高响应性能
+
 ### 缺点
 
-仅适用于浏览器，而且不能使用 setTimeout 模拟 requestAnimationFrame
+仅适用于浏览器，而且不能使用 setTimeout 模拟
 
 好消息是，我们可以退回到 microtask，等于没切
