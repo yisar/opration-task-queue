@@ -18,7 +18,7 @@ const consume = function (queue, timeout) {
 const flush = function () {
   frame++
   consume(readQueue, Infinity)
-  const timeout = performance.now() + 14 * Math.ceil(frame * (1.0 / 10.0))
+  const timeout = performance.now() + (1 << 4) * ~~(frame >> 3)
   consume(writeQueue, timeout)
   consume(deferQueue, timeout)
   if (writeQueue.length > 0) {
@@ -26,7 +26,7 @@ const flush = function () {
     writeQueue.length = 0
   }
   if (readQueue.length + writeQueue.length + deferQueue.length > 0) {
-    readTask()
+    requestAnimationFrame(flush)
   } else {
     frame = 0
   }
